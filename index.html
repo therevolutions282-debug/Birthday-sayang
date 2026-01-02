@@ -3,95 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Birthday Sayang 🤍</title>
-
 <style>
 * { box-sizing: border-box; }
 body {
-  margin: 0;
+  margin:0;
   font-family: Arial, sans-serif;
-  overflow-x: hidden;
-  background: #f5e6d9; /* cream-beige */
-  color: #333;
+  overflow-x:hidden;
+  background:#f5e6d9;
+  color:#333;
+  position: relative;
+}
+/* PAPER GRAIN */
+body::after{
+  content:"";
+  position: fixed; inset:0;
+  pointer-events:none;
+  background-image: repeating-radial-gradient(circle at 0 0, rgba(0,0,0,0.02), rgba(0,0,0,0.02) 1px, transparent 1px, transparent 2px);
+  z-index:1;
+}
+
+/* BUTTON PLAY */
+#playBtn{
+  position:fixed;
+  top:40%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#f0cfc0;
+  border:none;
+  padding:20px 40px;
+  font-size:24px;
+  border-radius:20px;
+  cursor:pointer;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  z-index:100;
 }
 
 /* FRAME */
-section {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  position: relative;
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+  position:relative;
+  z-index:2;
 }
-
-/* FRAME LOVE + CONTENT */
-.frame {
-  max-width: 900px;
-  width: 100%;
-  padding: 45px 28px;
-  border-radius: 30px;
-  border: 3px solid rgba(0,0,0,0.2);
-  background: rgba(255,255,255,0.85);
-  box-shadow: 0 0 25px rgba(0,0,0,0.2);
-  text-align: center;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.9s ease;
+.frame{
+  max-width:900px;
+  width:100%;
+  padding:50px 30px;
+  border-radius:35px;
+  background: rgba(255,255,255,0.88);
+  box-shadow:0 0 40px rgba(0,0,0,0.2);
+  text-align:center;
+  border:4px solid #f5c1d1;
+  opacity:0;
+  transform: scale(0.85);
+  transition: all 1s ease;
 }
-
-.frame.show {
-  opacity: 1;
+.frame.show{
+  opacity:1;
   transform: scale(1);
 }
-
-.frame::before {
-  content: "💜 🌟 🌸 💖 💜";
-  display: block;
-  font-size: 26px;
-  margin-bottom: 12px;
+.frame::before{
+  content:"💜 🌟 🌸 💖 💜";
+  display:block;
+  font-size:28px;
+  margin-bottom:14px;
 }
 
 /* COVER FONT */
-.cover h1 { font-family: "Vivaldi", "Brush Script MT", cursive; font-size: 72px; }
-.cover h2 { font-family: "Vivaldi", "Brush Script MT", cursive; font-size: 54px; }
-.cover p { font-size: 26px; }
+.cover h1{ font-family:"Vivaldi","Brush Script MT",cursive; font-size:72px;}
+.cover h2{ font-family:"Vivaldi","Brush Script MT",cursive; font-size:54px;}
+.cover p{ font-size:26px;}
 
 /* CONTENT FONT */
-.content p { font-family: "Poor Richard", "Times New Roman", serif; font-size: 26px; line-height:1.8; }
-
-img { width: 340px; max-width:90%; border-radius:20px; margin:25px 0; }
+.content p{ font-family:"Poor Richard","Times New Roman",serif; font-size:26px; line-height:1.8;}
+img{ width:340px; max-width:90%; border-radius:24px; margin:26px 0; }
 
 /* POPUP OBJECTS */
-.popup {
-  position: fixed;
-  font-size: 24px;
+.popup{
+  position:fixed;
+  font-size:24px;
   animation: floatUp 8s linear infinite;
-  opacity: 0.6;
-  z-index: 0;
+  opacity:0.6;
+  z-index:0;
 }
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(0.8); opacity:0; }
-  10% { opacity:0.7; }
-  100% { transform: translateY(-120vh) scale(1.2); opacity:0; }
+@keyframes floatUp{
+  0%{ transform:translateY(0) scale(0.8); opacity:0; }
+  10%{ opacity:0.7; }
+  100%{ transform:translateY(-120vh) scale(1.2); opacity:0; }
 }
 
 /* MOBILE */
-@media (max-width:600px){
-  .cover h1{font-size:52px;}
-  .cover h2{font-size:40px;}
-  .content p{font-size:22px;}
+@media(max-width:600px){
+  .cover h1{ font-size:52px; }
+  .cover h2{ font-size:40px; }
+  .content p{ font-size:22px; }
 }
 </style>
 </head>
-
 <body>
 
-<!-- MUSIC -->
-<audio id="musik" autoplay loop>
+<!-- PLAY BUTTON -->
+<button id="playBtn">🎵 Klik untuk mulai musik 🎵</button>
+
+<!-- AUDIO -->
+<audio id="musik" loop>
   <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
-<!-- POPUP OBJECTS -->
+<!-- POPUP SCRIPT -->
 <script>
 const symbols=["💜","🌟","🌸","💖","✨"];
 for(let i=0;i<20;i++){
@@ -102,6 +124,16 @@ for(let i=0;i<20;i++){
   s.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
   document.body.appendChild(s);
 }
+</script>
+
+<!-- PLAY BUTTON SCRIPT -->
+<script>
+const musik=document.getElementById("musik");
+const btn=document.getElementById("playBtn");
+btn.addEventListener("click",()=>{
+  musik.play();
+  btn.style.display="none";
+});
 </script>
 
 <!-- COVER -->
