@@ -91,12 +91,12 @@ img{ width:340px; max-width:90%; border-radius:24px; margin:26px 0; }
 .popup{
   position:fixed;
   font-size:24px;
-  opacity:1.0;
+  opacity:0.7;
   z-index:0;
   top:-30px;
 }
 @keyframes fall{
-  3%{ transform: translateY(-30px) scale(0.8); opacity:0; }
+  0%{ transform: translateY(-30px) scale(0.8); opacity:0; }
   10%{ opacity:0.8; }
   100%{ transform: translateY(110vh) scale(1); opacity:0; }
 }
@@ -112,7 +112,7 @@ img{ width:340px; max-width:90%; border-radius:24px; margin:26px 0; }
 <body>
 
 <!-- PLAY BUTTON -->
-<button id="playBtn">🎵 pencet yang 🎵</button>
+<button id="playBtn">🎵 Klik untuk mulai musik 🎵</button>
 
 <!-- AUDIO -->
 <audio id="musik" loop>
@@ -169,4 +169,33 @@ btn.addEventListener("click",()=>{
 <section>
   <div class="frame content">
     <img src="foto2.jpg">
-    <
+    <p>Terima kasih karena sudah bertahan di hari-hari yang tidak mudah. Kamu luar biasa.</p>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section>
+  <div class="frame content">
+    <img src="foto3.jpg">
+    <p>Semoga semua doa baikmu menemukan jalannya. Dan semoga kamu selalu merasa dicintai 🤍</p>
+    <p><b>— Dari seseorang yang menyayangimu sepenuh hati</b></p>
+  </div>
+</section>
+
+<!-- SCROLL ANIMATION -->
+<script>
+const frames=document.querySelectorAll('.frame');
+const reveal=()=>{
+  frames.forEach(f=>{
+    const top=f.getBoundingClientRect().top;
+    if(top<window.innerHeight-120){
+      f.classList.add('show');
+    }
+  });
+};
+window.addEventListener('scroll',reveal);
+reveal();
+</script>
+
+</body>
+</html>
