@@ -6,61 +6,15 @@
 
 <style>
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
-  color: white;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-
-  /* SOFT PURPLE GRADIENT */
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 40%),
-    linear-gradient(135deg, #3b2a5f, #6d4a8e, #a678b5);
-
-  background-size: 200% 200%;
-  animation: bgMove 18s ease infinite;
+  background: #f5e6d9; /* cream-beige */
+  color: #333;
 }
 
-/* PAPER GRAIN EFFECT */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    repeating-radial-gradient(circle at 0 0,
-      rgba(255,255,255,0.04),
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px,
-      transparent 2px);
-  opacity: 0.25;
-  z-index: 1;
-}
-
-@keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* FLOATING HEART */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 9s linear infinite;
-  opacity: 0.4;
-  z-index: 0;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(0.8); opacity: 0; }
-  20% { opacity: 0.5; }
-  100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
-}
-
+/* FRAME */
 section {
   min-height: 100vh;
   display: flex;
@@ -68,24 +22,21 @@ section {
   align-items: center;
   padding: 30px;
   position: relative;
-  z-index: 2;
 }
 
-/* FRAME */
+/* FRAME LOVE + CONTENT */
 .frame {
   max-width: 900px;
   width: 100%;
-  padding: 48px 30px;
-  border-radius: 34px;
-  border: 3px solid rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 40px rgba(255,182,193,0.6);
+  padding: 45px 28px;
+  border-radius: 30px;
+  border: 3px solid rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
   text-align: center;
-
   opacity: 0;
-  transform: scale(0.85);
-  transition: all 1s ease;
+  transform: scale(0.8);
+  transition: all 0.9s ease;
 }
 
 .frame.show {
@@ -94,63 +45,62 @@ section {
 }
 
 .frame::before {
-  content: "🤍 💜 🤍 💜 🤍";
+  content: "💜 🌟 🌸 💖 💜";
   display: block;
   font-size: 26px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
-/* COVER */
-.cover h1 {
-  font-family: "Vivaldi", "Brush Script MT", cursive;
-  font-size: 72px;
-}
+/* COVER FONT */
+.cover h1 { font-family: "Vivaldi", "Brush Script MT", cursive; font-size: 72px; }
+.cover h2 { font-family: "Vivaldi", "Brush Script MT", cursive; font-size: 54px; }
+.cover p { font-size: 26px; }
 
-.cover h2 {
-  font-family: "Vivaldi", "Brush Script MT", cursive;
-  font-size: 54px;
-}
+/* CONTENT FONT */
+.content p { font-family: "Poor Richard", "Times New Roman", serif; font-size: 26px; line-height:1.8; }
 
-.cover p {
-  font-size: 26px;
-  opacity: 0.9;
-}
+img { width: 340px; max-width:90%; border-radius:20px; margin:25px 0; }
 
-/* CONTENT */
-.content p {
-  font-family: "Poor Richard", "Times New Roman", serif;
-  font-size: 26px;
-  line-height: 1.9;
+/* POPUP OBJECTS */
+.popup {
+  position: fixed;
+  font-size: 24px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.6;
+  z-index: 0;
 }
-
-img {
-  width: 330px;
-  max-width: 90%;
-  border-radius: 26px;
-  margin: 26px 0;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0.8); opacity:0; }
+  10% { opacity:0.7; }
+  100% { transform: translateY(-120vh) scale(1.2); opacity:0; }
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-  .cover h1 { font-size: 52px; }
-  .cover h2 { font-size: 40px; }
-  .content p { font-size: 22px; }
+@media (max-width:600px){
+  .cover h1{font-size:52px;}
+  .cover h2{font-size:40px;}
+  .content p{font-size:22px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEARTS -->
+<!-- MUSIC -->
+<audio id="musik" autoplay loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<!-- POPUP OBJECTS -->
 <script>
-for(let i=0;i<18;i++){
-  let h=document.createElement("div");
-  h.className="heart";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDelay=Math.random()*9+"s";
-  h.innerHTML="💜";
-  document.body.appendChild(h);
+const symbols=["💜","🌟","🌸","💖","✨"];
+for(let i=0;i<20;i++){
+  let s=document.createElement("div");
+  s.className="popup";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDelay=Math.random()*8+"s";
+  s.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+  document.body.appendChild(s);
 }
 </script>
 
@@ -160,11 +110,7 @@ for(let i=0;i<18;i++){
     <h1>Happy Birthday</h1>
     <h2>22 Tahun</h2>
     <h2>Sayang 🤍</h2>
-    <p>
-      Sebuah kisah tentang kamu,  
-      yang hari ini tumbuh  
-      menjadi lebih dewasa dan berarti.
-    </p>
+    <p>Sebuah kisah tentangmu, yang hari ini tumbuh menjadi lebih dewasa dan berarti.</p>
   </div>
 </section>
 
@@ -172,11 +118,7 @@ for(let i=0;i<18;i++){
 <section>
   <div class="frame content">
     <img src="foto1.jpg">
-    <p>
-      Di usia 22 ini, semoga hidupmu  
-      dipenuhi ketenangan,  
-      keberanian, dan cahaya lembut.
-    </p>
+    <p>Di usia 22 ini, semoga hidupmu dipenuhi ketenangan, keberanian, dan cahaya lembut.</p>
   </div>
 </section>
 
@@ -184,11 +126,7 @@ for(let i=0;i<18;i++){
 <section>
   <div class="frame content">
     <img src="foto2.jpg">
-    <p>
-      Terima kasih karena sudah bertahan  
-      di hari-hari yang tidak mudah.  
-      Kamu luar biasa.
-    </p>
+    <p>Terima kasih karena sudah bertahan di hari-hari yang tidak mudah. Kamu luar biasa.</p>
   </div>
 </section>
 
@@ -196,11 +134,7 @@ for(let i=0;i<18;i++){
 <section>
   <div class="frame content">
     <img src="foto3.jpg">
-    <p>
-      Semoga semua doa baikmu  
-      menemukan jalannya.  
-      Dan semoga kamu selalu merasa dicintai 🤍
-    </p>
+    <p>Semoga semua doa baikmu menemukan jalannya. Dan semoga kamu selalu merasa dicintai 🤍</p>
     <p><b>— Dari seseorang yang menyayangimu sepenuh hati</b></p>
   </div>
 </section>
