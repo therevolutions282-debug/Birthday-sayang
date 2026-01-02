@@ -13,6 +13,7 @@ body{
   color:#333;
   position:relative;
 }
+
 /* TEKSTUR KASAR */
 body::after{
   content:"";
@@ -26,22 +27,6 @@ body::after{
     transparent 4px
   );
   z-index:1;
-}
-
-/* BUTTON PLAY */
-#playBtn{
-  position:fixed;
-  top:40%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:#f0cfc0;
-  border:none;
-  padding:20px 40px;
-  font-size:24px;
-  border-radius:20px;
-  cursor:pointer;
-  box-shadow:0 4px 15px rgba(0,0,0,0.3);
-  z-index:100;
 }
 
 /* FRAME */
@@ -64,12 +49,12 @@ section{
   text-align:center;
   border:4px solid #f5c1d1;
   opacity:0;
-  transform: scale(0.85);
+  transform: translateY(30px);
   transition: all 1s ease;
 }
 .frame.show{
   opacity:1;
-  transform: scale(1);
+  transform: translateY(0);
 }
 .frame::before{
   content:"💜 🌟 🌸 💖 💜";
@@ -111,14 +96,6 @@ img{ width:340px; max-width:90%; border-radius:24px; margin:26px 0; }
 </head>
 <body>
 
-<!-- PLAY BUTTON -->
-<button id="playBtn">🎵 Klik untuk mulai musik 🎵</button>
-
-<!-- AUDIO -->
-<audio id="musik" loop>
-  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Creative_Commons/Scott_Holmes/Happy_Music/Scott_Holmes_-_Happy_Birthday.mp3" type="audio/mpeg">
-</audio>
-
 <!-- POPUP SCRIPT -->
 <script>
 const symbols=["💜","🌟","🌸","💖","✨"];
@@ -135,16 +112,6 @@ for(let i=0;i<25;i++){
   s.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
   document.body.appendChild(s);
 }
-</script>
-
-<!-- PLAY BUTTON SCRIPT -->
-<script>
-const musik=document.getElementById("musik");
-const btn=document.getElementById("playBtn");
-btn.addEventListener("click",()=>{
-  musik.play();
-  btn.style.display="none";
-});
 </script>
 
 <!-- COVER -->
