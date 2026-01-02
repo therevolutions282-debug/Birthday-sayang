@@ -4,16 +4,15 @@
 <meta charset="UTF-8">
 <title>Happy Birthday Sayang 🤍</title>
 <style>
-* { box-sizing: border-box; }
-body {
+*{box-sizing:border-box;}
+body{
   margin:0;
-  font-family: Arial, sans-serif;
+  font-family:Arial,sans-serif;
   overflow-x:hidden;
-  background:#f5e6d9; /* cream-beige */
-  position:relative;
+  background:#f5e6d9;
   color:#333;
+  position:relative;
 }
-
 /* TEKSTUR KASAR */
 body::after{
   content:"";
@@ -21,10 +20,10 @@ body::after{
   pointer-events:none;
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(0,0,0,0.03),
-    rgba(0,0,0,0.03) 1px,
+    rgba(0,0,0,0.04),
+    rgba(0,0,0,0.04) 1px,
     transparent 1px,
-    transparent 3px
+    transparent 4px
   );
   z-index:1;
 }
@@ -88,18 +87,18 @@ section{
 .content p{ font-family:"Poor Richard","Times New Roman",serif; font-size:26px; line-height:1.8;}
 img{ width:340px; max-width:90%; border-radius:24px; margin:26px 0; }
 
-/* POPUP OBJECTS */
+/* POPUP JATUH */
 .popup{
   position:fixed;
   font-size:24px;
-  animation: floatUp 8s linear infinite;
   opacity:0.7;
   z-index:0;
+  top:-30px;
 }
-@keyframes floatUp{
-  0%{ transform:translateY(0) scale(0.8); opacity:0; }
-  10%{ opacity:0.7; }
-  100%{ transform:translateY(-120vh) scale(1.2); opacity:0; }
+@keyframes fall{
+  0%{ transform: translateY(-30px) scale(0.8); opacity:0; }
+  10%{ opacity:0.8; }
+  100%{ transform: translateY(110vh) scale(1); opacity:0; }
 }
 
 /* MOBILE */
@@ -117,7 +116,7 @@ img{ width:340px; max-width:90%; border-radius:24px; margin:26px 0; }
 
 <!-- AUDIO -->
 <audio id="musik" loop>
-  <source src="musik.mp3" type="audio/mpeg">
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Creative_Commons/Scott_Holmes/Happy_Music/Scott_Holmes_-_Happy_Birthday.mp3" type="audio/mpeg">
 </audio>
 
 <!-- POPUP SCRIPT -->
@@ -127,8 +126,12 @@ for(let i=0;i<25;i++){
   let s=document.createElement("div");
   s.className="popup";
   s.style.left=Math.random()*100+"vw";
-  s.style.animationDelay=Math.random()*8+"s";
   s.style.fontSize=(20+Math.random()*12)+"px";
+  s.style.animationDelay=(Math.random()*8)+"s";
+  s.style.animationDuration=(5+Math.random()*4)+"s";
+  s.style.animationName="fall";
+  s.style.animationTimingFunction="linear";
+  s.style.animationIterationCount="infinite";
   s.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
   document.body.appendChild(s);
 }
@@ -166,33 +169,4 @@ btn.addEventListener("click",()=>{
 <section>
   <div class="frame content">
     <img src="foto2.jpg">
-    <p>Terima kasih karena sudah bertahan di hari-hari yang tidak mudah. Kamu luar biasa.</p>
-  </div>
-</section>
-
-<!-- PAGE 3 -->
-<section>
-  <div class="frame content">
-    <img src="foto3.jpg">
-    <p>Semoga semua doa baikmu menemukan jalannya. Dan semoga kamu selalu merasa dicintai 🤍</p>
-    <p><b>— Dari seseorang yang menyayangimu sepenuh hati</b></p>
-  </div>
-</section>
-
-<!-- SCROLL ANIMATION -->
-<script>
-const frames=document.querySelectorAll('.frame');
-const reveal=()=>{
-  frames.forEach(f=>{
-    const top=f.getBoundingClientRect().top;
-    if(top<window.innerHeight-120){
-      f.classList.add('show');
-    }
-  });
-};
-window.addEventListener('scroll',reveal);
-reveal();
-</script>
-
-</body>
-</html>
+    <
