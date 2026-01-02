@@ -9,31 +9,55 @@
 
 body {
   margin: 0;
-  background: linear-gradient(135deg, #2b1055, #6a0572, #9d50bb);
-  background-size: 300% 300%;
-  animation: bg 14s ease infinite;
-  overflow-x: hidden;
   color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+
+  /* SOFT PURPLE GRADIENT */
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 40%),
+    linear-gradient(135deg, #3b2a5f, #6d4a8e, #a678b5);
+
+  background-size: 200% 200%;
+  animation: bgMove 18s ease infinite;
 }
 
-@keyframes bg {
+/* PAPER GRAIN EFFECT */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(circle at 0 0,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.04) 1px,
+      transparent 1px,
+      transparent 2px);
+  opacity: 0.25;
+  z-index: 1;
+}
+
+@keyframes bgMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* LOVE FLOAT */
+/* FLOATING HEART */
 .heart {
   position: fixed;
   bottom: -20px;
-  font-size: 22px;
-  animation: floatUp 8s linear infinite;
-  opacity: 0.6;
+  font-size: 20px;
+  animation: floatUp 9s linear infinite;
+  opacity: 0.4;
+  z-index: 0;
 }
 
 @keyframes floatUp {
   0% { transform: translateY(0) scale(0.8); opacity: 0; }
-  10% { opacity: 0.7; }
+  20% { opacity: 0.5; }
   100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
 }
 
@@ -42,22 +66,26 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px;
+  padding: 30px;
+  position: relative;
+  z-index: 2;
 }
 
 /* FRAME */
 .frame {
   max-width: 900px;
   width: 100%;
-  padding: 45px 28px;
-  border-radius: 32px;
-  border: 4px solid rgba(255,255,255,0.65);
-  background: rgba(255,255,255,0.12);
-  box-shadow: 0 0 35px rgba(255,182,193,0.8);
+  padding: 48px 30px;
+  border-radius: 34px;
+  border: 3px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(255,182,193,0.6);
   text-align: center;
+
   opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.9s ease;
+  transform: scale(0.85);
+  transition: all 1s ease;
 }
 
 .frame.show {
@@ -66,46 +94,46 @@ section {
 }
 
 .frame::before {
-  content: "💜 💖 💜 💖 💜";
+  content: "🤍 💜 🤍 💜 🤍";
   display: block;
-  font-size: 28px;
-  margin-bottom: 12px;
+  font-size: 26px;
+  margin-bottom: 14px;
 }
 
 /* COVER */
 .cover h1 {
   font-family: "Vivaldi", "Brush Script MT", cursive;
-  font-size: 76px;
+  font-size: 72px;
 }
 
 .cover h2 {
   font-family: "Vivaldi", "Brush Script MT", cursive;
-  font-size: 56px;
+  font-size: 54px;
 }
 
 .cover p {
-  font-size: 28px;
+  font-size: 26px;
   opacity: 0.9;
 }
 
 /* CONTENT */
 .content p {
   font-family: "Poor Richard", "Times New Roman", serif;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1.9;
 }
 
 img {
-  width: 340px;
+  width: 330px;
   max-width: 90%;
   border-radius: 26px;
-  margin: 25px 0;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+  margin: 26px 0;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
 }
 
 /* MOBILE */
 @media (max-width: 600px) {
-  .cover h1 { font-size: 54px; }
+  .cover h1 { font-size: 52px; }
   .cover h2 { font-size: 40px; }
   .content p { font-size: 22px; }
 }
@@ -114,15 +142,15 @@ img {
 
 <body>
 
-<!-- FLOATING HEARTS -->
+<!-- HEARTS -->
 <script>
-for(let i=0;i<20;i++){
-  let heart=document.createElement("div");
-  heart.className="heart";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDelay=Math.random()*8+"s";
-  heart.innerHTML="💜";
-  document.body.appendChild(heart);
+for(let i=0;i<18;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDelay=Math.random()*9+"s";
+  h.innerHTML="💜";
+  document.body.appendChild(h);
 }
 </script>
 
@@ -135,7 +163,7 @@ for(let i=0;i<20;i++){
     <p>
       Sebuah kisah tentang kamu,  
       yang hari ini tumbuh  
-      menjadi lebih kuat dan berarti.
+      menjadi lebih dewasa dan berarti.
     </p>
   </div>
 </section>
@@ -145,9 +173,9 @@ for(let i=0;i<20;i++){
   <div class="frame content">
     <img src="foto1.jpg">
     <p>
-      Di usia 22 ini, semoga langkahmu  
-      selalu ditemani keberanian,  
-      ketenangan, dan cahaya.
+      Di usia 22 ini, semoga hidupmu  
+      dipenuhi ketenangan,  
+      keberanian, dan cahaya lembut.
     </p>
   </div>
 </section>
@@ -177,13 +205,13 @@ for(let i=0;i<20;i++){
   </div>
 </section>
 
-<!-- SCROLL REVEAL -->
+<!-- SCROLL ANIMATION -->
 <script>
 const frames=document.querySelectorAll('.frame');
 const reveal=()=>{
   frames.forEach(f=>{
     const top=f.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
+    if(top<window.innerHeight-120){
       f.classList.add('show');
     }
   });
