@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Sayang 🤍</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background: linear-gradient(-45deg, #2b1055, #5f2c82, #9d50bb, #6a0572);
+  background-size: 400% 400%;
+  animation: bgMove 18s ease infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+section {
+  min-height: 100vh;
+  padding: 50px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* COVER */
+.cover h1 {
+  font-size: 46px;
+  margin: 0;
+  animation: popUp 1.4s ease forwards;
+}
+
+.cover h2 {
+  font-size: 34px;
+  margin: 10px 0;
+  animation: popUp 1.6s ease forwards;
+}
+
+.cover p {
+  font-size: 18px;
+  opacity: 0.85;
+  animation: popUp 1.8s ease forwards;
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.scroll {
+  margin-top: 35px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* CONTENT */
+.content {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+}
+
+.content p {
+  font-size: 18px;
+  line-height: 1.9;
+  max-width: 650px;
+}
+
+img {
+  width: 280px;
+  max-width: 90%;
+  border-radius: 26px;
+  margin: 25px 0;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .cover h1 { font-size: 38px; }
+  .cover h2 { font-size: 28px; }
+  p { font-size: 17px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <h1>Happy Birthday</h1>
+  <h2>22 Tahun</h2>
+  <h2>Sayang 🤍</h2>
+
+  <p>
+    Sebuah cerita tentang kamu,  
+    yang hari ini bertambah dewasa.
+  </p>
+
+  <div class="scroll">scroll ke bawah ↓</div>
+</section>
+
+<!-- PAGE 1 -->
+<section class="content">
+  <img src="foto1.jpg">
+  <p>
+    Di umur 22 ini, semoga kamu semakin kuat  
+    menghadapi dunia yang tidak selalu mudah.  
+    Semoga langkahmu selalu dilapangkan  
+    dan hatimu tetap hangat.
+  </p>
+</section>
+
+<!-- PAGE 2 -->
+<section class="content">
+  <img src="foto2.jpg">
+  <p>
+    Terima kasih karena sudah bertahan,  
+    sudah berjuang,  
+    dan tetap menjadi dirimu sendiri.
+  </p>
+</section>
+
+<!-- PAGE 3 -->
+<section class="content">
+  <img src="foto3.jpg">
+  <p>
+    Semoga semua doa baikmu  
+    satu per satu menemukan jalannya.  
+    Aku harap, di setiap langkahmu,  
+    kamu selalu merasa dicintai 🤍
+  </p>
+
+  <p><b>— Dari seseorang yang tulus menyayangimu</b></p>
+</section>
+
+</body>
+</html>
